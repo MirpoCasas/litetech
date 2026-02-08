@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: litetech-backend
+    runtime: node
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npx prisma migrate deploy && npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: litetech-db
+          property: connectionString
+      - key: PORT
+        value: 3000
+
+databases:
+  - name: litetech-db
+    databaseName: litetech
+    user: litetech
