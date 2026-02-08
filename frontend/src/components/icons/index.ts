@@ -1,0 +1,9 @@
+export { default as ArrowIcon } from './ArrowIcon';
+export { default as ChevronIcon } from './ChevronIcon';
+export { default as CloseIcon } from './CloseIcon';
+export { default as UploadIcon } from './UploadIcon';
+export { default as ArticleIcon } from './ArticleIcon';
+export { default as LogoIcon } from './LogoIcon';
+export { default as LinkedInIcon } from './LinkedInIcon';
+export { default as FacebookIcon } from './FacebookIcon';
+export { default as XIcon } from './XIcon';
