@@ -5,21 +5,25 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3001';
   const allowedOrigins = [
-    process.env.FRONTEND_URL,
+    frontendUrl.replace(/\/$/, ''), // Remove trailing slash
     'http://localhost:3001',
     'https://litetech-liart.vercel.app',
-  ].filter(Boolean);
+  ];
 
   app.enableCors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or curl)
       if (!origin) return callback(null, true);
       
-      if (allowedOrigins.some(allowed => origin.startsWith(allowed || ''))) {
+      // Normalize origin by removing trailing slash
+      const normalizedOrigin = origin.replace(/\/$/, '');
+      
+      if (allowedOrigins.includes(normalizedOrigin)) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error(`Not allowed by CORS: ${origin}`));
       }
     },
     credentials: true,
