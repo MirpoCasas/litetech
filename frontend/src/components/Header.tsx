@@ -8,9 +8,10 @@ import { LogoIcon, ArrowIcon } from './icons';
 
 interface HeaderProps {
   onPostCreated?: () => void;
+  opacity?: number;
 }
 
-export default function Header({ onPostCreated }: HeaderProps) {
+export default function Header({ onPostCreated, opacity = 1 }: HeaderProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,7 +30,10 @@ export default function Header({ onPostCreated }: HeaderProps) {
   return (
     <>
       <header className="w-full bg-black md:border-b border-[#333]">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-16 py-4 md:py-6 md:bg-black bg-black/80 backdrop-blur-sm">
+        <div
+          className="max-w-[1440px] mx-auto px-6 md:px-16 py-4 md:py-6 backdrop-blur-sm"
+          style={{ backgroundColor: `rgba(0, 0, 0, ${opacity})` }}
+        >
           <div className="flex items-center justify-between md:justify-between">
             <Link href="/" className="flex items-center gap-3 md:mx-0">
               {/* Logo Icon */}
@@ -41,8 +45,7 @@ export default function Header({ onPostCreated }: HeaderProps) {
               onClick={() => setIsModalOpen(true)}
               className="flex items-center gap-1.25 text-white font-semibold hover:opacity-80 transition-opacity md:relative absolute right-6"
             >
-              <span className="text-base font-semibold hidden md:inline">New post</span>
-              <span className="text-base font-semibold md:hidden">Read</span>
+              <span className="text-base font-semibold">New post</span>
               <ArrowIcon color="#D8F34E" width={18} height={9} />
             </button>
           </div>

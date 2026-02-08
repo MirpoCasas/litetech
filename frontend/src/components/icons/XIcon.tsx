@@ -7,11 +7,8 @@ interface XIconProps {
 
 export default function XIcon({ className, width = 24, height = 24, color = 'currentColor' }: XIconProps) {
   return (
-    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" className={className}>
-      <path
-        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-        fill={color}
-      />
+    <svg width={width} height={height} viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M14.9636 0H17.8771L11.512 7.20103L19 17H13.1361L8.54397 11.057L3.28953 17H0.37431L7.18236 9.29769L0 0H6.01099L10.1619 5.43215L14.9619 0H14.9636ZM13.9411 15.2738H15.5555L5.13466 1.63549H3.40226L13.9411 15.2738Z" fill={color} />
     </svg>
   );
 }

@@ -151,7 +151,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Header />
+      <Header opacity={0.8} />
 
       <main className="flex-1">
         {/* Hero Image with Title Overlay */}

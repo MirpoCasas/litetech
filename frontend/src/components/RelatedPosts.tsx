@@ -2,7 +2,7 @@
 
 import { RelatedPost } from '@/lib/api';
 import RelatedPostCard from './RelatedPostCard';
-import { ChevronIcon } from './icons';
+import { ArrowIcon, ChevronIcon } from './icons';
 
 interface RelatedPostsProps {
   posts: RelatedPost[];
@@ -27,13 +27,13 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
           >
             <div className="flex flex-row items-center gap-0.5">
               <span className="text-base font-semibold text-black">New post</span>
-              <ChevronIcon className="flex-shrink-0" />
+              <ArrowIcon className="flex-shrink-0" />
             </div>
           </button>
         </div>
 
         {/* Cards Grid */}
-        <div className="flex flex-col md:flex-row items-start gap-8 mt-6 md:mt-10">
+        <div className="flex overflow-x-auto md:overflow-x-visible items-start gap-2 md:gap-8 mt-6 md:mt-10 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide snap-x snap-mandatory md:flex-row">
           {posts.slice(0, 3).map((post) => (
             <RelatedPostCard key={post.id} post={post} />
           ))}

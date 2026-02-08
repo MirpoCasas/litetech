@@ -18,8 +18,8 @@ export default function RelatedPostCard({ post }: RelatedPostCardProps) {
   const readTime = 6;
 
   return (
-    <div className="block flex-1 w-full md:w-auto group">
-      <article className="relative h-[378px] overflow-hidden">
+    <div className="block flex-none md:flex-1 w-[237px] md:w-auto group snap-center">
+      <article className="relative h-[378px] overflow-hidden flex flex-col justify-end">
         {/* Background Image */}
         <Image
           src={imageUrl}
@@ -30,17 +30,17 @@ export default function RelatedPostCard({ post }: RelatedPostCardProps) {
         />
 
         {/* Content Overlay at bottom */}
-        <div className="absolute inset-0 flex flex-col justify-end p-6">
+        <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
           {/* Tag Container with white background */}
-          <div className="flex">
-            <div className="bg-white px-6 pt-6 pb-0">
+          <div className="flex pointer-events-auto">
+            <div className="bg-white px-6 pt-6 pb-0 flex justify-center items-center">
               <span className="tag">{topic}</span>
             </div>
           </div>
 
           {/* Title and Link Container */}
-          <div className="bg-white p-3 md:p-6">
-            <h3 className="text-lg font-bold leading-[150%] text-black line-clamp-3 mb-2.5 group-hover:opacity-80 transition-opacity">
+          <div className="bg-white p-6 flex flex-col pointer-events-auto">
+            <h3 className="text-lg font-bold leading-[150%] text-black line-clamp-6 mb-2.5 group-hover:opacity-80 transition-opacity">
               {title}
             </h3>
 
