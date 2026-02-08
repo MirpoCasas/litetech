@@ -104,19 +104,25 @@ export default function NewPostModal({
       formData.append('title', title.trim());
       formData.append('image', file);
 
-      await createRelatedPost(formData, controller.signal);
+      const result = await createRelatedPost(formData, controller.signal);
 
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
         progressIntervalRef.current = null;
       }
-      setUploadProgress(100);
-      setModalState('success');
+      
+      // Check if upload was actually successful
+      if (result && result.id) {
+        setUploadProgress(100);
+        setModalState('success');
 
-      setTimeout(() => {
-        onSuccess();
-        handleReset();
-      }, 2000);
+        setTimeout(() => {
+          onSuccess();
+          handleReset();
+        }, 2000);
+      } else {
+        throw new Error('Upload failed');
+      }
     } catch (err) {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);

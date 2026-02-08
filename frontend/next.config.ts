@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
         hostname: '*.s3.*.amazonaws.com',
       },
       {
+        protocol: 'https',
+        hostname: '*.r2.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.r2.cloudflarestorage.com',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '3000',
