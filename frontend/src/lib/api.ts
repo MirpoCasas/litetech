@@ -101,10 +101,16 @@ export async function createRelatedPost(
   });
 
   if (!res.ok) {
-    throw new Error('Failed to create post');
+    const errorText = await res.text().catch(() => 'Unknown error');
+    throw new Error(`Failed to create post: ${res.status} ${errorText}`);
   }
 
-  return res.json();
+  try {
+    return await res.json();
+  } catch (error) {
+    console.error('Failed to parse response JSON:', error);
+    throw new Error('Invalid response from server');
+  }
 }
 
 export function getCoverImageUrl(coverImg: Post['attributes']['coverImg']): string {
