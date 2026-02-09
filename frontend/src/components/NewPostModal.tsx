@@ -37,8 +37,9 @@ export default function NewPostModal({
 
   const handleFileChange = (file: File | null) => {
     if (file) {
-      if (!file.type.startsWith('image/')) {
-        setError('Please select an image file');
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        setError('Please select a JPG, JPEG, PNG, GIF, or WEBP image');
         return;
       }
       if (file.size > 5 * 1024 * 1024) {
@@ -110,7 +111,7 @@ export default function NewPostModal({
         clearInterval(progressIntervalRef.current);
         progressIntervalRef.current = null;
       }
-      
+
       setUploadProgress(100);
       setModalState('success');
 
@@ -305,7 +306,7 @@ export default function NewPostModal({
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept="image/*"
+                  accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
                   onChange={handleFileSelected}
                   className="hidden"
                 />
